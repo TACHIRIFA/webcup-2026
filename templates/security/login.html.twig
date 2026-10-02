@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webcup 2026 - Connexion</title>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+</head>
+<body>
+<main class="home-page">
+    <section class="presentation">
+        <div class="presentation-content">
+            <h2>Webcup 2026</h2>
+            <p>
+                Notre application est là pour faciliter
+                votre expérience.
+            </p>
+            <p>
+                Une plateforme simple, moderne et accessible
+                pour vous accompagner au quotidien.
+            </p>
+        </div>
+    </section>
+    <section class="authentication">
+        <div class="authentication-card">
+            <span class="authentication-label">
+                Authentification
+            </span>
+            <h2>Bienvenue</h2>
+            <p class="authentication-intro">
+                Saisis tes identifiants pour continuer.
+            </p>
+            <p class="authentication-description">
+                Utilise ton adresse e-mail et ton mot de passe
+                pour te connecter à l'application.
+            </p>
+
+            {% if error %}
+                <div class="login-error">
+                    Identifiants incorrects. Vérifie ton adresse e-mail
+                    et ton mot de passe.
+                </div>
+            {% endif %}
+
+            <form method="post">
+
+                <input
+                    type="hidden"
+                    name="_csrf_token"
+                    value="{{ csrf_token('authenticate') }}"
+                >
+
+                <div class="form-group">
+                    <label for="username">
+                        Adresse e-mail
+                    </label>
+
+                    <input
+                        type="email"
+                        id="username"
+                        name="_username"
+                        value="{{ last_username }}"
+                        autocomplete="email"
+                        required
+                        autofocus
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="password">
+                        Mot de passe
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="_password"
+                        autocomplete="current-password"
+                        required
+                    >
+                </div>
+                <button type="submit" class="login-button">
+                    Se connecter
+                </button>
+            </form>
+        </div>
+    </section>
+</main>
+</body>
+</html>
+

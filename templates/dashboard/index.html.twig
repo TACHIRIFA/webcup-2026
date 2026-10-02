@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webcup 2026 - Dashboard</title>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+</head>
+<body>
+<main class="dashboard-page">
+    <div class="dashboard-card">
+        <h1>Bienvenue sur votre dashboard</h1>
+        <p>
+            Vous êtes connecté à l'application Webcup 2026.
+        </p>
+        <p>
+            Connecté en tant que :
+            <strong>{{ app.user.userIdentifier }}</strong>
+        </p>
+        <a href="{{ path('app_logout') }}" class="logout-button">
+            Se déconnecter
+        </a>
+    </div>
+</main>
+</body>
+</html>
