@@ -3,24 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Webcup 2026 - Dashboard</title>
+    <title>Webcup 2026</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 <body>
-<main class="dashboard-page">
-    <div class="dashboard-card">
-        <h1>Bienvenue sur votre dashboard</h1>
-        <p>
-            Vous êtes connecté à l'application Webcup 2026.
-        </p>
-        <p>
-            Connecté en tant que :
-            <strong>{{ app.user.userIdentifier }}</strong>
-        </p>
-        <a href="{{ path('app_logout') }}" class="logout-button">
-            Se déconnecter
-        </a>
-    </div>
-</main>
+<div class="dashboard-layout">
+    <aside class="dashboard-sidebar">
+        <div class="sidebar-header">
+            <h1>Webcup 2026</h1>
+        </div>
+        <nav class="sidebar-navigation">
+            <div class="module-list">
+                {% for module in modules %}
+                    <div class="module-name">
+                        {{ module.name }}
+                    </div>
+                {% endfor %}
+            </div>
+        </nav>
+    </aside>
+    <main class="dashboard-content">
+        <div class="dashboard-topbar">
+            <div class="dashboard-welcome">
+                <h2>
+                    Bienvenue sur votre espace
+                </h2>
+                <p>
+                    Sélectionnez un module pour commencer à travailler.
+                </p>
+            </div>
+            <a
+                href="{{ path('app_logout') }}"
+                class="logout-link"
+            >
+                Se déconnecter
+            </a>
+        </div>
+        <div class="module-buttons">
+            {% for module in modules %}
+                <div class="module-button-row">
+                    <a
+                        href="{{ path(module.route) }}"
+                        class="module-button"
+                    >
+                        Ouvrir
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+</div>
 </body>
 </html>
