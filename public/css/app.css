@@ -2249,6 +2249,292 @@ object-fit: cover;
 border-radius: 8px;
 border: 1px solid #e5e7eb;
 }
+/* ================================
+GESTION DES PROFILS
+================================ */
+
+.users-header {
+display: flex;
+justify-content: space-between;
+align-items: flex-start;
+gap: 24px;
+margin-bottom: 28px;
+}
+
+.users-page-title {
+margin: 0 0 8px;
+color: #1f2937;
+font-size: 24px;
+font-weight: 700;
+}
+
+.users-page-description {
+margin: 0;
+max-width: 700px;
+color: #6b7280;
+font-size: 14px;
+line-height: 1.6;
+}
+
+/* ================================
+TABLEAU
+================================ */
+
+.users-table-card {
+width: 100%;
+overflow: hidden;
+background: #ffffff;
+border: 1px solid #e8eaf0;
+border-radius: 18px;
+box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+}
+
+.users-table-wrapper {
+width: 100%;
+overflow-x: auto;
+}
+
+.users-table {
+width: 100%;
+min-width: 720px;
+border-collapse: collapse;
+}
+
+.users-table thead {
+background: #f8fafc;
+}
+
+.users-table th {
+padding: 16px 20px;
+border-bottom: 1px solid #e8eaf0;
+color: #6b7280;
+font-size: 12px;
+font-weight: 700;
+text-align: left;
+text-transform: uppercase;
+letter-spacing: 0.03em;
+}
+
+.users-table td {
+padding: 18px 20px;
+border-bottom: 1px solid #edf0f4;
+color: #4b5563;
+font-size: 14px;
+vertical-align: middle;
+}
+
+.users-table tbody tr:last-child td {
+border-bottom: none;
+}
+
+.users-table tbody tr {
+transition: background 0.2s ease;
+}
+
+.users-table tbody tr:hover {
+background: #f9fafb;
+}
+
+/* ================================
+PROFIL UTILISATEUR
+================================ */
+
+.user-profile-cell {
+display: flex;
+align-items: center;
+gap: 12px;
+}
+
+.user-avatar {
+display: flex;
+align-items: center;
+justify-content: center;
+flex-shrink: 0;
+width: 42px;
+height: 42px;
+border-radius: 50%;
+background: #eff6ff;
+color: #2563eb;
+font-size: 15px;
+font-weight: 700;
+}
+
+.user-profile-information {
+display: flex;
+flex-direction: column;
+gap: 3px;
+}
+
+.user-profile-information strong {
+color: #1f2937;
+font-size: 14px;
+font-weight: 600;
+}
+
+.user-profile-information span {
+color: #9ca3af;
+font-size: 12px;
+}
+
+/* ================================
+RÔLES
+================================ */
+
+.user-role {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+min-height: 28px;
+padding: 0 10px;
+border-radius: 999px;
+font-size: 11px;
+font-weight: 700;
+}
+
+.user-role-admin {
+background: #fef2f2;
+color: #dc2626;
+}
+
+.user-role-agent {
+background: #fff7ed;
+color: #ea580c;
+}
+
+.user-role-citizen {
+background: #eff6ff;
+color: #2563eb;
+}
+
+/* ================================
+ACTIONS
+================================ */
+
+.user-actions {
+display: flex;
+align-items: center;
+gap: 8px;
+}
+
+.user-edit-button,
+.user-delete-button {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+min-height: 36px;
+padding: 0 12px;
+border-radius: 8px;
+font-family: inherit;
+font-size: 12px;
+font-weight: 600;
+text-decoration: none;
+cursor: pointer;
+transition:
+background 0.2s ease,
+border-color 0.2s ease,
+color 0.2s ease;
+}
+
+.user-edit-button {
+border: 1px solid #dbeafe;
+background: #eff6ff;
+color: #2563eb;
+}
+
+.user-edit-button:hover {
+border-color: #bfdbfe;
+background: #dbeafe;
+color: #1d4ed8;
+}
+
+.user-delete-button {
+border: 1px solid #fee2e2;
+background: #fef2f2;
+color: #dc2626;
+}
+
+.user-delete-button:hover:not(:disabled) {
+border-color: #fecaca;
+background: #fee2e2;
+color: #b91c1c;
+}
+
+.user-delete-button:disabled {
+cursor: not-allowed;
+opacity: 0.55;
+}
+
+.user-edit-button:focus-visible,
+.user-delete-button:focus-visible {
+outline: 3px solid rgba(37, 99, 235, 0.20);
+outline-offset: 2px;
+}
+
+/* ================================
+ÉTAT VIDE
+================================ */
+
+.users-empty-state {
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+min-height: 280px;
+padding: 40px;
+background: #ffffff;
+border: 1px solid #e8eaf0;
+border-radius: 18px;
+text-align: center;
+box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+}
+
+.users-empty-icon {
+display: flex;
+align-items: center;
+justify-content: center;
+width: 64px;
+height: 64px;
+margin-bottom: 20px;
+border-radius: 16px;
+background: #eff6ff;
+color: #2563eb;
+}
+
+.users-empty-title {
+margin: 0 0 8px;
+color: #1f2937;
+font-size: 18px;
+font-weight: 700;
+}
+
+.users-empty-description {
+margin: 0;
+max-width: 500px;
+color: #6b7280;
+font-size: 14px;
+line-height: 1.6;
+}
+
+/* ================================
+RESPONSIVE
+================================ */
+
+@media (max-width: 768px) {
+
+
+.users-page-title {
+    font-size: 21px;
+}
+
+.users-table-card {
+    border-radius: 14px;
+}
+
+.users-empty-state {
+    padding: 30px 20px;
+}
+
+}
 
 
      

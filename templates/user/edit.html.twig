@@ -1,0 +1,78 @@
+{% extends 'dashboard/layout.html.twig' %}
+
+{% block title %}
+TERRA NOVA - Modifier un profil
+{% endblock %}
+
+{% block dashboard_title %}
+Modifier un profil
+{% endblock %}
+
+{% block dashboard_description %}
+Modifiez les informations et le rôle de cet utilisateur.
+{% endblock %}
+
+{% block dashboard_content %}
+
+<section class="dashboard-section">
+
+<div class="users-form-card">
+
+    <h3 class="users-form-title">
+        Modifier le profil
+    </h3>
+
+    {{ form_start(form, {
+        'attr': {
+            'class': 'users-form'
+        }
+    }) }}
+
+        <div class="users-form-grid">
+
+            <div class="form-field form-field-full">
+
+                {{ form_label(form.email) }}
+
+                {{ form_widget(form.email) }}
+
+                {{ form_errors(form.email) }}
+
+            </div>
+
+            <div class="form-field form-field-full">
+
+                {{ form_label(form.roles) }}
+
+                {{ form_widget(form.roles) }}
+
+                {{ form_errors(form.roles) }}
+
+            </div>
+
+        </div>
+
+        <div class="users-form-actions">
+
+            <a
+                href="{{ path('app_users') }}"
+                class="users-cancel-button"
+            >
+                Annuler
+            </a>
+
+            <button
+                type="submit"
+                class="users-submit-button"
+            >
+                Enregistrer les modifications
+            </button>
+
+        </div>
+
+    {{ form_end(form) }}
+
+</div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,189 @@
+{% extends 'dashboard/layout.html.twig' %}
+
+{% block title %}
+TERRA NOVA - Gestion des profils
+{% endblock %}
+
+{% block dashboard_title %}
+Gestion des profils
+{% endblock %}
+
+{% block dashboard_description %}
+Consultez et gérez les profils des utilisateurs de la plateforme.
+{% endblock %}
+
+{% block dashboard_content %}
+
+<section class="dashboard-section">
+
+<div class="users-header">
+
+    <div>
+
+        <h3 class="users-page-title">
+            Profils utilisateurs
+        </h3>
+
+        <p class="users-page-description">
+            Gérez les utilisateurs, leurs informations et leurs rôles.
+        </p>
+
+    </div>
+
+</div>
+
+{% if users is empty %}
+
+    <div class="users-empty-state">
+
+        <div
+            class="users-empty-icon"
+            aria-hidden="true"
+        >
+
+            <svg
+                viewBox="0 0 24 24"
+                width="30"
+                height="30"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <circle cx="12" cy="8" r="4"></circle>
+                <path d="M4 21a8 8 0 0 1 16 0"></path>
+            </svg>
+
+        </div>
+
+        <h4 class="users-empty-title">
+            Aucun profil disponible
+        </h4>
+
+        <p class="users-empty-description">
+            Aucun utilisateur n'est actuellement enregistré sur la plateforme.
+        </p>
+
+    </div>
+
+{% else %}
+
+    <div class="users-table-card">
+
+        <div class="users-table-wrapper">
+
+            <table class="users-table">
+
+                <thead>
+
+                    <tr>
+                        <th scope="col">Utilisateur</th>
+                        <th scope="col">E-mail</th>
+                        <th scope="col">Rôle</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for user in users %}
+
+                        <tr>
+
+                            <td>
+
+                                <div class="user-profile-cell">
+
+                                    <div
+                                        class="user-avatar"
+                                        aria-hidden="true"
+                                    >
+                                        {{ user.email|first|upper }}
+                                    </div>
+
+                                    <div class="user-profile-information">
+
+                                        <strong>
+                                            {{ user.email }}
+                                        </strong>
+
+                                        <span>
+                                            Profil #{{ user.id }}
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+                            <td>
+                                {{ user.email }}
+                            </td>
+
+                            <td>
+
+                                {% if 'ROLE_ADMIN' in user.roles %}
+
+                                    <span class="user-role user-role-admin">
+                                        Administrateur
+                                    </span>
+
+                                {% elseif 'ROLE_AGENT' in user.roles %}
+
+                                    <span class="user-role user-role-agent">
+                                        Agent
+                                    </span>
+
+                                {% else %}
+
+                                    <span class="user-role user-role-citizen">
+                                        Citoyen
+                                    </span>
+
+                                {% endif %}
+
+                            </td>
+
+                            <td>
+
+                                <div class="user-actions">
+
+                                    <a
+                                        href="#"
+                                        class="user-edit-button"
+                                    >
+                                        Modifier
+                                    </a>
+
+                                    <button
+                                        type="button"
+                                        class="user-delete-button"
+                                        disabled
+                                    >
+                                        Supprimer
+                                    </button>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+{% endif %}
+
+</section>
+
+{% endblock %}

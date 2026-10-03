@@ -15,13 +15,41 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     {
         parent::__construct($registry, User::class);
     }
-    public function upgradePassword(PasswordAuthenticatedUserInterface $user, string $newHashedPassword): void
+
+    /**
+     * @return User[]
+     */
+    public function findAllOrderedByName(): array
     {
+        return $this->createQueryBuilder('user')
+            ->orderBy('user.id', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function countAllUsers(): int
+    {
+        return (int) $this->createQueryBuilder('user')
+            ->select('COUNT(user.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    public function upgradePassword(
+        PasswordAuthenticatedUserInterface $user,
+        string $newHashedPassword
+    ): void {
         if (!$user instanceof User) {
-            throw new UnsupportedUserException(sprintf('Instances of "%s" are not supported.', $user::class));
+            throw new UnsupportedUserException(
+                sprintf(
+                    'Instances of "%s" are not supported.',
+                    $user::class
+                )
+            );
         }
 
         $user->setPassword($newHashedPassword);
+
         $this->getEntityManager()->persist($user);
         $this->getEntityManager()->flush();
     }
