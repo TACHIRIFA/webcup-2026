@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Nova Terra</title>
+
+<link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
+</head>
+
+<body>
+
+<div class="home-page">
+
+<header class="home-header">
+
+    <div class="home-logo">
+        Nova Terra
+    </div>
+
+    <nav class="home-navigation">
+
+        <a href="{{ path('app_login') }}" class="home-login">
+            Se connecter
+        </a>
+
+        <a href="{{ path('app_register') }}" class="home-register">
+            S'inscrire
+        </a>
+
+    </nav>
+
+</header>
+
+<main class="home-content">
+
+    <section class="home-hero">
+
+        <span class="home-badge">
+            Ville numérique
+        </span>
+
+        <h1>
+            Bienvenue à Nova Terra
+        </h1>
+
+        <p>
+            Retrouvez les services de votre ville,
+            vos démarches et les informations municipales
+            depuis un seul espace.
+        </p>
+
+        <div class="home-actions">
+
+            <a
+                href="{{ path('app_register') }}"
+                class="home-primary-button"
+            >
+                Créer mon compte
+            </a>
+
+            <a
+                href="{{ path('app_login') }}"
+                class="home-secondary-button"
+            >
+                Se connecter
+            </a>
+
+        </div>
+
+    </section>
+
+    <section class="home-services">
+
+        <div class="home-service">
+            <h2>Services municipaux</h2>
+
+            <p>
+                Découvrez les principaux services proposés
+                aux habitants de Nova Terra.
+            </p>
+        </div>
+
+        <div class="home-service">
+            <h2>Informations</h2>
+
+            <p>
+                Retrouvez les annonces et informations
+                importantes de votre ville.
+            </p>
+        </div>
+
+        <div class="home-service">
+            <h2>Espace citoyen</h2>
+
+            <p>
+                Accédez à votre espace personnel et
+                retrouvez vos démarches facilement.
+            </p>
+        </div>
+
+    </section>
+
+</main>
+
+<footer class="home-footer">
+    © {{ "now"|date("Y") }} Nova Terra
+</footer>
+```
+
+</div>
+
+</body>
+
+</html>

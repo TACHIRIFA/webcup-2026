@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Webcup 2026 - Inscription</title>
+
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+</head>
+
+<body>
+
+<main class="home-page">
+
+    <section class="presentation">
+
+        <div class="presentation-content">
+
+            <h2>Webcup 2026</h2>
+
+            <p>
+                Rejoignez notre plateforme et profitez
+                de votre espace personnel.
+            </p>
+
+            <p>
+                Créez votre compte simplement pour accéder
+                aux services de Nova Terra.
+            </p>
+
+        </div>
+
+    </section>
+
+    <section class="authentication">
+
+        <div class="authentication-card">
+
+            <span class="authentication-label">
+                Inscription
+            </span>
+
+            <h2>Créer un compte</h2>
+
+            <p class="authentication-intro">
+                Crée ton espace personnel pour commencer.
+            </p>
+
+            <p class="authentication-description">
+                Renseigne ton adresse e-mail et choisis
+                un mot de passe pour créer ton compte.
+            </p>
+
+            {% if error %}
+                <div class="login-error">
+                    {{ error }}
+                </div>
+            {% endif %}
+
+            <form method="post">
+
+                <input
+                    type="hidden"
+                    name="_token"
+                    value="{{ csrf_token('register') }}"
+                >
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Adresse e-mail
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value="{{ app.request.request.get('email') }}"
+                        autocomplete="email"
+                        required
+                        autofocus
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Mot de passe
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        autocomplete="new-password"
+                        minlength="6"
+                        required
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="password_confirmation">
+                        Confirmer le mot de passe
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password_confirmation"
+                        name="password_confirmation"
+                        autocomplete="new-password"
+                        minlength="6"
+                        required
+                    >
+
+                </div>
+
+                <button type="submit" class="login-button">
+                    Créer mon compte
+                </button>
+
+            </form>
+
+            <p class="authentication-description">
+                Vous avez déjà un compte ?
+                <a href="{{ path('app_login') }}">
+                    Se connecter
+                </a>
+            </p>
+
+        </div>
+
+    </section>
+
+</main>
+
+</body>
+
+</html>
