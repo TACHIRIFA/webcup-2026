@@ -3,54 +3,194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Webcup 2026</title>
+    <title>TERRA NOVA</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 <body>
 <div class="dashboard-layout">
     <aside class="dashboard-sidebar">
         <div class="sidebar-header">
-            <h1>Webcup 2026</h1>
+            <div class="sidebar-logo">
+            </div>
+            <div class="sidebar-brand">
+                <h1>TERRA NOVA</h1>
+                <span>Plateforme municipale</span>
+            </div>
         </div>
         <nav class="sidebar-navigation">
-            <div class="module-list">
-                {% for module in modules %}
-                    <div class="module-name">
-                        {{ module.name }}
-                    </div>
-                {% endfor %}
-            </div>
+            <a href="#dashboard" class="sidebar-link active">
+                <span>⌂</span>
+                <span>Tableau de bord</span>
+            </a>
+            <a href="#services" class="sidebar-link">
+                <span>▣</span>
+                <span>Annuaire des services</span>
+            </a>
+            <a href="#actualites" class="sidebar-link">
+                <span>◉</span>
+                <span>Actualités & informations</span>
+            </a>
+            <a href="#contact" class="sidebar-link">
+                <span>✉</span>
+                <span>Contacter la mairie</span>
+            </a>
+            <a href="#profils" class="sidebar-link">
+                <span>♙</span>
+                <span>Gestion des profils</span>
+            </a>
+            <a href="#permissions" class="sidebar-link">
+                <span>⌘</span>
+                <span>Contrôle des accès</span>
+            </a>
+            <a href="#agents" class="sidebar-link">
+                <span>♟</span>
+                <span>Espace agents</span>
+            </a>
+            <a href="#demandes" class="sidebar-link">
+                <span>☷</span>
+                <span>Suivi des demandes</span>
+            </a>
         </nav>
     </aside>
     <main class="dashboard-content">
-        <div class="dashboard-topbar">
-            <div class="dashboard-welcome">
-                <h2>
-                    Bienvenue sur votre espace
-                </h2>
+        <header class="dashboard-topbar">
+            <div class="dashboard-title">
+                <h2>Tableau de bord</h2>
                 <p>
-                    Sélectionnez un module pour commencer à travailler.
+                    Bienvenue sur votre espace TERRA NOVA.
                 </p>
             </div>
-            <a
-                href="{{ path('app_logout') }}"
-                class="logout-link"
-            >
-                Se déconnecter
-            </a>
-        </div>
-        <div class="module-buttons">
-            {% for module in modules %}
-                <div class="module-button-row">
-                    <a
-                        href="{{ path(module.route) }}"
-                        class="module-button"
+            <div class="dashboard-actions">
+                <div class="dashboard-search">
+                    <span>⌕</span>
+                    <input
+                        type="text"
+                        placeholder="Rechercher..."
                     >
-                        Ouvrir
-                    </a>
                 </div>
-            {% endfor %}
-        </div>
+                <a
+                    href="{{ path('app_logout') }}"
+                    class="logout-link"
+                >
+                    Se déconnecter
+                </a>
+            </div>
+        </header>
+        <section class="dashboard-statistics">
+            <div class="stat-card">
+                <div>
+                    <span class="stat-label">
+                        Services municipaux
+                    </span>
+                    <strong>06</strong>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div>
+                    <span class="stat-label">
+                        Actualités
+                    </span>
+                    <strong>12</strong>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div>
+                    <span class="stat-label">
+                        Demandes
+                    </span>
+                    <strong>24</strong>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div>
+                    <span class="stat-label">
+                        Utilisateurs
+                    </span>
+                    <strong>18</strong>
+                </div>
+            </div>
+        </section>
+        <section class="dashboard-section">
+            <div class="dashboard-modules">
+                <a href="#services" class="dashboard-module">
+                    <div>
+                        <h4>Annuaire des services</h4>
+                        <p>
+                            Consultez les services municipaux et leurs informations utiles.
+                        </p>
+                    </div>
+                    <span class="module-arrow">
+                        →
+                    </span>
+                </a>
+                <a href="#actualites" class="dashboard-module">
+                    <div>
+                        <h4>Actualités & informations</h4>
+                        <p>
+                            Retrouvez les annonces et informations pratiques de la municipalité.
+                        </p>
+                    </div>
+                    <span class="module-arrow">
+                        →
+                    </span>
+                </a>
+                <a href="#contact" class="dashboard-module">
+                    <div>
+                        <h4>Contacter la mairie</h4>
+                        <p>
+                            Envoyez facilement vos demandes et messages à la mairie.
+                        </p>
+                    </div>
+                    <span class="module-arrow">
+                        →
+                    </span>
+                </a>
+                <a href="#profils" class="dashboard-module">
+                    <div>
+                        <h4>Gestion des profils</h4>
+                        <p>
+                            Gérez les différents profils utilisateurs de la plateforme.
+                        </p>
+                    </div>
+                    <span class="module-arrow">
+                        →
+                    </span>
+                </a>
+                <a href="#permissions" class="dashboard-module">
+                    <div>
+                        <h4>Contrôle des accès</h4>
+                        <p>
+                            Gérez les droits et les accès aux différentes fonctionnalités.
+                        </p>
+                    </div>
+                    <span class="module-arrow">
+                        →
+                    </span>
+                </a>
+                <a href="#agents" class="dashboard-module">
+                    <div>
+                        <h4>Espace agents</h4>
+                        <p>
+                            Accédez à l'espace de travail destiné aux agents municipaux.
+                        </p>
+                    </div>
+                    <span class="module-arrow">
+                        →
+                    </span>
+                </a>
+                <a href="#demandes" class="dashboard-module">
+                    <div>
+                        <h4>Suivi des demandes</h4>
+                        <p>
+                            Consultez et suivez l'état d'avancement des demandes.
+                        </p>
+                    </div>
+                    <span class="module-arrow">
+                        →
+                    </span>
+                </a>
+            </div>
+        </section>
     </main>
 </div>
 </body>

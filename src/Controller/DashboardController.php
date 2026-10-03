@@ -13,15 +13,15 @@ final class DashboardController extends AbstractController
     {
         $modules = [
             [
-                'name' => 'Module 1',
+                'name' => '',
                 'route' => 'app_dashboard',
             ],
             [
-                'name' => 'Module 2',
+                'name' => '',
                 'route' => 'app_dashboard',
             ],
             [
-                'name' => 'Module 3',
+                'name' => '',
                 'route' => 'app_dashboard',
             ],
         ];
