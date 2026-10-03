@@ -1,0 +1,130 @@
+{% extends 'dashboard/layout.html.twig' %}
+
+{% block title %}
+TERRA NOVA - Modifier une actualité
+{% endblock %}
+
+{% block dashboard_title %}
+Modifier une actualité
+{% endblock %}
+
+{% block dashboard_description %}
+Modifiez les informations et le contenu de cette actualité municipale.
+{% endblock %}
+
+{% block dashboard_content %}
+
+<section class="dashboard-section">
+
+<div class="news-form-card">
+
+    <h3
+        id="news-form-title"
+        class="news-form-title"
+    >
+        Modifier l’actualité
+    </h3>
+
+    {{ form_start(form, {
+        'attr': {
+            'class': 'news-form',
+            'aria-labelledby': 'news-form-title'
+        }
+    }) }}
+
+        <div class="news-form-grid">
+
+            <div class="form-field form-field-full">
+
+                {{ form_label(form.title) }}
+
+                {{ form_widget(form.title) }}
+
+                {{ form_errors(form.title) }}
+
+            </div>
+
+            <div class="form-field">
+
+                {{ form_label(form.category) }}
+
+                {{ form_widget(form.category) }}
+
+                {{ form_errors(form.category) }}
+
+            </div>
+
+            <div class="form-field">
+
+                {{ form_label(form.publishAt) }}
+
+                {{ form_widget(form.publishAt) }}
+
+                {{ form_errors(form.publishAt) }}
+
+            </div>
+
+            <div class="form-field form-field-full">
+
+                {{ form_label(form.content) }}
+
+                {{ form_widget(form.content) }}
+
+                {{ form_errors(form.content) }}
+
+            </div>
+
+            <div class="form-field form-field-full">
+
+                {{ form_label(form.image) }}
+
+                {{ form_widget(form.image) }}
+
+                {{ form_errors(form.image) }}
+
+                {% if news.image %}
+
+                    <div class="news-current-image">
+
+                        <span class="news-current-image-label">
+                            Image actuelle
+                        </span>
+
+                        <img
+                            src="{{ asset('uploads/news/' ~ news.image) }}"
+                            alt="Image actuelle de l’actualité : {{ news.title }}"
+                        >
+
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+        <div class="news-form-actions">
+
+            <a
+                href="{{ path('app_news') }}"
+                class="news-cancel-button"
+            >
+                Annuler
+            </a>
+
+            <button
+                type="submit"
+                class="news-submit-button"
+            >
+                Enregistrer les modifications
+            </button>
+
+        </div>
+
+    {{ form_end(form) }}
+
+</div>
+
+</section>
+
+{% endblock %}

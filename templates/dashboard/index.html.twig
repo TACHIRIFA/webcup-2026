@@ -1,197 +1,140 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TERRA NOVA</title>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-</head>
-<body>
-<div class="dashboard-layout">
-    <aside class="dashboard-sidebar">
-        <div class="sidebar-header">
-            <div class="sidebar-logo">
-            </div>
-            <div class="sidebar-brand">
-                <h1>TERRA NOVA</h1>
-                <span>Plateforme municipale</span>
-            </div>
-        </div>
-        <nav class="sidebar-navigation">
-            <a href="#dashboard" class="sidebar-link active">
-                <span>⌂</span>
-                <span>Tableau de bord</span>
-            </a>
-            <a href="#services" class="sidebar-link">
-                <span>▣</span>
-                <span>Annuaire des services</span>
-            </a>
-            <a href="#actualites" class="sidebar-link">
-                <span>◉</span>
-                <span>Actualités & informations</span>
-            </a>
-            <a href="#contact" class="sidebar-link">
-                <span>✉</span>
-                <span>Contacter la mairie</span>
-            </a>
-            <a href="#profils" class="sidebar-link">
-                <span>♙</span>
-                <span>Gestion des profils</span>
-            </a>
-            <a href="#permissions" class="sidebar-link">
-                <span>⌘</span>
-                <span>Contrôle des accès</span>
-            </a>
-            <a href="#agents" class="sidebar-link">
-                <span>♟</span>
-                <span>Espace agents</span>
-            </a>
-            <a href="#demandes" class="sidebar-link">
-                <span>☷</span>
-                <span>Suivi des demandes</span>
-            </a>
-        </nav>
-    </aside>
-    <main class="dashboard-content">
-        <header class="dashboard-topbar">
-            <div class="dashboard-title">
-                <h2>Tableau de bord</h2>
+
+{% extends 'dashboard/layout.html.twig' %}
+
+{% block title %}
+    TERRA NOVA - Tableau de bord
+{% endblock %}
+
+{% block dashboard_title %}
+    Tableau de bord
+{% endblock %}
+
+{% block dashboard_description %}
+    Bienvenue sur votre espace TERRA NOVA.
+{% endblock %}
+
+{% block dashboard_content %}
+
+<section class="dashboard-section">
+
+    <div class="dashboard-modules">
+
+        <a
+            href="{{ path('app_services') }}"
+            class="dashboard-module"
+        >
+            <div>
+                <h4>Annuaire des services</h4>
+
                 <p>
-                    Bienvenue sur votre espace TERRA NOVA.
+                    Consultez les services municipaux et leurs informations utiles.
                 </p>
             </div>
-            <div class="dashboard-actions">
-                <div class="dashboard-search">
-                    <span>⌕</span>
-                    <input
-                        type="text"
-                        placeholder="Rechercher..."
-                    >
-                </div>
-                <a
-                    href="{{ path('app_logout') }}"
-                    class="logout-link"
-                >
-                    Se déconnecter
-                </a>
+
+            <span class="module-arrow">
+                →
+            </span>
+        </a>
+
+        <a href="#actualites" class="dashboard-module">
+
+            <div>
+                <h4>Actualités & informations</h4>
+
+                <p>
+                    Retrouvez les annonces et informations pratiques de la municipalité.
+                </p>
             </div>
-        </header>
-        <section class="dashboard-statistics">
-            <div class="stat-card">
-                <div>
-                    <span class="stat-label">
-                        Services municipaux
-                    </span>
-                    <strong>06</strong>
-                </div>
+
+            <span class="module-arrow">
+                →
+            </span>
+
+        </a>
+
+        <a href="#contact" class="dashboard-module">
+
+            <div>
+                <h4>Contacter la mairie</h4>
+
+                <p>
+                    Envoyez facilement vos demandes et messages à la mairie.
+                </p>
             </div>
-            <div class="stat-card">
-                <div>
-                    <span class="stat-label">
-                        Actualités
-                    </span>
-                    <strong>12</strong>
-                </div>
+
+            <span class="module-arrow">
+                →
+            </span>
+
+        </a>
+
+        <a href="#profils" class="dashboard-module">
+
+            <div>
+                <h4>Gestion des profils</h4>
+
+                <p>
+                    Gérez les différents profils utilisateurs de la plateforme.
+                </p>
             </div>
-            <div class="stat-card">
-                <div>
-                    <span class="stat-label">
-                        Demandes
-                    </span>
-                    <strong>24</strong>
-                </div>
+
+            <span class="module-arrow">
+                →
+            </span>
+
+        </a>
+
+        <a href="#permissions" class="dashboard-module">
+
+            <div>
+                <h4>Contrôle des accès</h4>
+
+                <p>
+                    Gérez les droits et les accès aux différentes fonctionnalités.
+                </p>
             </div>
-            <div class="stat-card">
-                <div>
-                    <span class="stat-label">
-                        Utilisateurs
-                    </span>
-                    <strong>18</strong>
-                </div>
+
+            <span class="module-arrow">
+                →
+            </span>
+
+        </a>
+
+        <a href="#agents" class="dashboard-module">
+
+            <div>
+                <h4>Espace agents</h4>
+
+                <p>
+                    Accédez à l'espace de travail destiné aux agents municipaux.
+                </p>
             </div>
-        </section>
-        <section class="dashboard-section">
-            <div class="dashboard-modules">
-                <a href="#services" class="dashboard-module">
-                    <div>
-                        <h4>Annuaire des services</h4>
-                        <p>
-                            Consultez les services municipaux et leurs informations utiles.
-                        </p>
-                    </div>
-                    <span class="module-arrow">
-                        →
-                    </span>
-                </a>
-                <a href="#actualites" class="dashboard-module">
-                    <div>
-                        <h4>Actualités & informations</h4>
-                        <p>
-                            Retrouvez les annonces et informations pratiques de la municipalité.
-                        </p>
-                    </div>
-                    <span class="module-arrow">
-                        →
-                    </span>
-                </a>
-                <a href="#contact" class="dashboard-module">
-                    <div>
-                        <h4>Contacter la mairie</h4>
-                        <p>
-                            Envoyez facilement vos demandes et messages à la mairie.
-                        </p>
-                    </div>
-                    <span class="module-arrow">
-                        →
-                    </span>
-                </a>
-                <a href="#profils" class="dashboard-module">
-                    <div>
-                        <h4>Gestion des profils</h4>
-                        <p>
-                            Gérez les différents profils utilisateurs de la plateforme.
-                        </p>
-                    </div>
-                    <span class="module-arrow">
-                        →
-                    </span>
-                </a>
-                <a href="#permissions" class="dashboard-module">
-                    <div>
-                        <h4>Contrôle des accès</h4>
-                        <p>
-                            Gérez les droits et les accès aux différentes fonctionnalités.
-                        </p>
-                    </div>
-                    <span class="module-arrow">
-                        →
-                    </span>
-                </a>
-                <a href="#agents" class="dashboard-module">
-                    <div>
-                        <h4>Espace agents</h4>
-                        <p>
-                            Accédez à l'espace de travail destiné aux agents municipaux.
-                        </p>
-                    </div>
-                    <span class="module-arrow">
-                        →
-                    </span>
-                </a>
-                <a href="#demandes" class="dashboard-module">
-                    <div>
-                        <h4>Suivi des demandes</h4>
-                        <p>
-                            Consultez et suivez l'état d'avancement des demandes.
-                        </p>
-                    </div>
-                    <span class="module-arrow">
-                        →
-                    </span>
-                </a>
+
+            <span class="module-arrow">
+                →
+            </span>
+
+        </a>
+
+        <a href="#demandes" class="dashboard-module">
+
+            <div>
+                <h4>Suivi des demandes</h4>
+
+                <p>
+                    Consultez et suivez l'état d'avancement des demandes.
+                </p>
             </div>
-        </section>
-    </main>
-</div>
-</body>
-</html>
+
+            <span class="module-arrow">
+                →
+            </span>
+
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}
+

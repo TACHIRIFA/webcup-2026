@@ -1,0 +1,89 @@
+{% extends 'dashboard/layout.html.twig' %}
+
+{% block title %}
+TERRA NOVA - Contacter la mairie
+{% endblock %}
+
+{% block dashboard_title %}
+Contacter la mairie
+{% endblock %}
+
+{% block dashboard_description %}
+Envoyez votre message à la municipalité.
+{% endblock %}
+
+{% block dashboard_content %}
+
+<section class="dashboard-section">
+
+<div class="contact-form-card">
+
+    <h3 id="contact-form-title" class="contact-form-title">
+        Envoyer un message à la mairie
+    </h3>
+
+    {% for message in app.flashes('success') %}
+
+        <div
+            class="contact-success-message"
+            role="status"
+            aria-live="polite"
+        >
+            {{ message }}
+        </div>
+
+    {% endfor %}
+
+    {{ form_start(form, {
+        'attr': {
+            'class': 'contact-form',
+            'aria-labelledby': 'contact-form-title'
+        }
+    }) }}
+
+        <div class="contact-form-grid">
+
+            <div class="form-field">
+                {{ form_label(form.name) }}
+                {{ form_widget(form.name) }}
+                {{ form_errors(form.name) }}
+            </div>
+
+            <div class="form-field">
+                {{ form_label(form.email) }}
+                {{ form_widget(form.email) }}
+                {{ form_errors(form.email) }}
+            </div>
+
+            <div class="form-field form-field-full">
+                {{ form_label(form.subject) }}
+                {{ form_widget(form.subject) }}
+                {{ form_errors(form.subject) }}
+            </div>
+
+            <div class="form-field form-field-full">
+                {{ form_label(form.message) }}
+                {{ form_widget(form.message) }}
+                {{ form_errors(form.message) }}
+            </div>
+
+        </div>
+
+        <div class="contact-form-actions">
+
+            <button
+                type="submit"
+                class="contact-submit-button"
+            >
+                Envoyer le message
+            </button>
+
+        </div>
+
+    {{ form_end(form) }}
+
+</div>
+
+</section>
+
+{% endblock %}

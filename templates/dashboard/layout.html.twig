@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>
+    {% block title %}TERRA NOVA{% endblock %}
+</title>
+
+<link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+<aside class="dashboard-sidebar">
+
+    <div class="sidebar-header">
+
+        <div class="sidebar-logo">
+        </div>
+
+        <div class="sidebar-brand">
+            <h1>TERRA NOVA</h1>
+            <span>Plateforme municipale</span>
+        </div>
+
+    </div>
+
+    <nav class="sidebar-navigation" aria-label="Navigation principale">
+
+        <a
+            href="{{ path('app_dashboard') }}"
+            class="sidebar-link"
+        >
+            <svg
+                aria-hidden="true"
+                focusable="false"
+                viewBox="0 0 24 24"
+                width="20"
+                height="20"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <path d="M3 10.5L12 3l9 7.5"></path>
+                <path d="M5 9.5V21h14V9.5"></path>
+                <path d="M9 21v-6h6v6"></path>
+            </svg>
+
+            <span>Tableau de bord</span>
+        </a>
+
+        <a
+            href="{{ path('app_services') }}"
+            class="sidebar-link"
+        >
+            <svg
+                aria-hidden="true"
+                focusable="false"
+                viewBox="0 0 24 24"
+                width="20"
+                height="20"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <path d="M4 4h16v16H4z"></path>
+                <path d="M8 8h8"></path>
+                <path d="M8 12h8"></path>
+                <path d="M8 16h5"></path>
+            </svg>
+
+            <span>Annuaire des services</span>
+        </a>
+
+        <a
+            href="{{ path('app_news') }}"
+            class="sidebar-link"
+        >
+            <svg
+                aria-hidden="true"
+                focusable="false"
+                viewBox="0 0 24 24"
+                width="20"
+                height="20"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <path d="M4 5h16v14H4z"></path>
+                <path d="M7 8h10"></path>
+                <path d="M7 12h10"></path>
+                <path d="M7 16h6"></path>
+            </svg>
+
+            <span>Actualités &amp; informations</span>
+        </a>
+
+        <a
+            href="{{ path('app_contact') }}"
+            class="sidebar-link"
+        >
+            <svg
+                aria-hidden="true"
+                focusable="false"
+                viewBox="0 0 24 24"
+                width="20"
+                height="20"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <rect
+                    x="3"
+                    y="5"
+                    width="18"
+                    height="14"
+                    rx="2"
+                ></rect>
+                <path d="M3 7l9 6 9-6"></path>
+            </svg>
+
+            <span>Contacter la mairie</span>
+        </a>
+
+        <a
+            href="#profils"
+            class="sidebar-link"
+        >
+            <svg
+                aria-hidden="true"
+                focusable="false"
+                viewBox="0 0 24 24"
+                width="20"
+                height="20"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <circle cx="12" cy="8" r="4"></circle>
+                <path d="M4 21a8 8 0 0 1 16 0"></path>
+            </svg>
+
+            <span>Gestion des profils</span>
+        </a>
+
+        <a
+            href="#permissions"
+            class="sidebar-link"
+        >
+            <svg
+                aria-hidden="true"
+                focusable="false"
+                viewBox="0 0 24 24"
+                width="20"
+                height="20"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <rect
+                    x="5"
+                    y="11"
+                    width="14"
+                    height="9"
+                    rx="2"
+                ></rect>
+                <path d="M8 11V8a4 4 0 0 1 8 0v3"></path>
+                <circle cx="12" cy="15" r="1"></circle>
+            </svg>
+
+            <span>Contrôle des accès</span>
+        </a>
+
+        <a
+            href="#agents"
+            class="sidebar-link"
+        >
+            <svg
+                aria-hidden="true"
+                focusable="false"
+                viewBox="0 0 24 24"
+                width="20"
+                height="20"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <circle cx="12" cy="7" r="3"></circle>
+                <path d="M5 21a7 7 0 0 1 14 0"></path>
+                <path d="M19 10a3 3 0 0 1 0 6"></path>
+                <path d="M21 21a5 5 0 0 0-3-4.58"></path>
+            </svg>
+
+            <span>Espace agents</span>
+        </a>
+
+        <a
+            href="#demandes"
+            class="sidebar-link"
+        >
+            <svg
+                aria-hidden="true"
+                focusable="false"
+                viewBox="0 0 24 24"
+                width="20"
+                height="20"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <path d="M6 4h12v16H6z"></path>
+                <path d="M9 8h6"></path>
+                <path d="M9 12h6"></path>
+                <path d="M9 16h4"></path>
+            </svg>
+
+            <span>Suivi des demandes</span>
+        </a>
+
+    </nav>
+
+</aside>
+
+<main class="dashboard-content">
+
+    <header class="dashboard-topbar">
+
+        <div class="dashboard-title">
+
+            <h2>
+                {% block dashboard_title %}
+                    TERRA NOVA
+                {% endblock %}
+            </h2>
+
+            <p>
+                {% block dashboard_description %}
+                    Bienvenue sur votre espace TERRA NOVA.
+                {% endblock %}
+            </p>
+
+        </div>
+
+        <div class="dashboard-actions">
+
+            <div class="dashboard-search">
+
+                <span aria-hidden="true">
+
+                    <svg
+                        focusable="false"
+                        viewBox="0 0 24 24"
+                        width="18"
+                        height="18"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <circle cx="11" cy="11" r="7"></circle>
+                        <path d="M16 16l5 5"></path>
+                    </svg>
+
+                </span>
+
+                <input
+                    type="search"
+                    placeholder="Rechercher..."
+                    aria-label="Rechercher dans le tableau de bord"
+                >
+
+            </div>
+
+            <a
+                href="{{ path('app_logout') }}"
+                class="logout-link"
+            >
+                Se déconnecter
+            </a>
+
+        </div>
+
+    </header>
+
+    {% block dashboard_content %}
+    {% endblock %}
+
+</main>
+
+</div>
+
+</body>
+
+</html>

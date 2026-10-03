@@ -1,0 +1,184 @@
+{% extends 'dashboard/layout.html.twig' %}
+
+{% block title %}
+TERRA NOVA - Actualités & informations
+{% endblock %}
+
+{% block dashboard_title %}
+Actualités & informations
+{% endblock %}
+
+{% block dashboard_description %}
+Consultez et gérez les actualités de la municipalité.
+{% endblock %}
+
+{% block dashboard_content %}
+
+<section class="dashboard-section">
+
+<div class="news-header">
+
+    <div>
+
+        <h3 class="news-page-title">
+            Actualités
+        </h3>
+
+        <p class="news-page-description">
+            Retrouvez les informations et actualités publiées par la municipalité.
+        </p>
+
+    </div>
+
+    <a
+        href="{{ path('app_news_new') }}"
+        class="news-add-button"
+    >
+        + Ajouter une actualité
+    </a>
+
+</div>
+
+{% for message in app.flashes('success') %}
+
+    <div
+        class="news-success-message"
+        role="status"
+        aria-live="polite"
+    >
+        {{ message }}
+    </div>
+
+{% endfor %}
+
+{% if news is empty %}
+
+    <div class="news-empty-state">
+
+        <div
+            class="news-empty-icon"
+            aria-hidden="true"
+        >
+
+            <svg
+                viewBox="0 0 24 24"
+                width="30"
+                height="30"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <path d="M4 5h16v14H4z"></path>
+                <path d="M7 8h10"></path>
+                <path d="M7 12h10"></path>
+                <path d="M7 16h6"></path>
+            </svg>
+
+        </div>
+
+        <h4 class="news-empty-title">
+            Aucune actualité disponible
+        </h4>
+
+        <p class="news-empty-description">
+            Aucune actualité n'a encore été publiée.
+            Commencez par ajouter une première information municipale.
+        </p>
+
+    </div>
+
+{% else %}
+
+    <div class="news-grid">
+
+        {% for item in news %}
+
+            <article class="news-card">
+
+                {% if item.image %}
+
+                    <div class="news-card-image">
+
+                        <img
+                            src="{{ asset('uploads/news/' ~ item.image) }}"
+                            alt="{{ item.title }}"
+                        >
+
+                    </div>
+
+                {% endif %}
+
+                <div class="news-card-content">
+
+                    <div class="news-card-meta">
+
+                        <span class="news-card-category">
+                            {{ item.category }}
+                        </span>
+
+                        <time
+                            datetime="{{ item.publishAt|date('Y-m-d\\TH:i') }}"
+                        >
+                            {{ item.publishAt|date('d/m/Y à H:i') }}
+                        </time>
+
+                    </div>
+
+                    <h4 class="news-card-title">
+                        {{ item.title }}
+                    </h4>
+
+                    <p class="news-card-description">
+                        {{ item.content|length > 180
+                            ? item.content|slice(0, 180) ~ '...'
+                            : item.content
+                        }}
+                    </p>
+
+                    <div class="news-card-actions">
+
+                        <a
+                            href="{{ path('app_news_edit', {'id': item.id}) }}"
+                            class="news-edit-button"
+                        >
+                            Modifier
+                        </a>
+
+                        <form
+                            method="post"
+                            action="{{ path('app_news_delete', {'id': item.id}) }}"
+                            class="news-delete-form"
+                            onsubmit="return confirm('Voulez-vous vraiment supprimer cette actualité ?');"
+                        >
+
+                            <input
+                                type="hidden"
+                                name="_token"
+                                value="{{ csrf_token('delete_news_' ~ item.id) }}"
+                            >
+
+                            <button
+                                type="submit"
+                                class="news-delete-button"
+                            >
+                                Supprimer
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+        {% endfor %}
+
+    </div>
+
+{% endif %}
+</section>
+
+{% endblock %}

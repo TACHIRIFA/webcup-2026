@@ -1,0 +1,155 @@
+
+{% extends 'dashboard/layout.html.twig' %}
+
+{% block title %}
+    TERRA NOVA - Annuaire des services
+{% endblock %}
+
+{% block dashboard_title %}
+    Annuaire des services
+{% endblock %}
+
+{% block dashboard_description %}
+    Consultez les services municipaux et leurs informations utiles.
+{% endblock %}
+
+{% block dashboard_content %}
+
+<section class="dashboard-section">
+
+    <div class="municipal-service-header">
+
+        <div>
+            <h3 class="municipal-service-page-title">
+                Services municipaux
+            </h3>
+
+            <p class="municipal-service-page-description">
+                Retrouvez les différents services proposés par la municipalité.
+            </p>
+        </div>
+
+        <a
+            href="{{ path('app_services_new') }}"
+            class="municipal-service-add-button"
+        >
+            + Ajouter un service
+        </a>
+
+    </div>
+
+    {% if services is empty %}
+
+        <div class="dashboard-module">
+
+            <div>
+                <h4>Aucun service disponible</h4>
+
+                <p>
+                    Aucun service municipal n'est disponible pour le moment.
+                </p>
+            </div>
+
+        </div>
+
+    {% else %}
+
+        <div class="dashboard-modules">
+
+            {% for service in services %}
+
+                <div class="dashboard-module">
+
+                    <div>
+
+                        <h4>
+                            {{ service.name }}
+                        </h4>
+
+                        {% if service.category %}
+                            <p>
+                                <strong>Catégorie :</strong>
+                                {{ service.category }}
+                            </p>
+                        {% endif %}
+
+                        {% if service.description %}
+                            <p>
+                                {{ service.description }}
+                            </p>
+                        {% endif %}
+
+                        {% if service.adresse %}
+                            <p>
+                                <strong>Adresse :</strong>
+                                {{ service.adresse }}
+                            </p>
+                        {% endif %}
+
+                        {% if service.phone %}
+                            <p>
+                                <strong>Téléphone :</strong>
+                                {{ service.phone }}
+                            </p>
+                        {% endif %}
+
+                        {% if service.email %}
+                            <p>
+                                <strong>Email :</strong>
+                                {{ service.email }}
+                            </p>
+                        {% endif %}
+
+                        {% if service.openingHours %}
+                            <p>
+                                <strong>Horaires :</strong>
+                                {{ service.openingHours }}
+                            </p>
+                        {% endif %}
+
+                        <div class="municipal-service-card-actions">
+
+                            <a
+                                href="{{ path('app_services_edit', {'id': service.id}) }}"
+                                class="municipal-service-edit-button"
+                            >
+                                Modifier
+                            </a>
+
+                            <form
+                                method="post"
+                                action="{{ path('app_services_delete', {'id': service.id}) }}"
+                                onsubmit="return confirm('Voulez-vous vraiment supprimer ce service ?');"
+                                class="municipal-service-delete-form"
+                            >
+
+                                <input
+                                    type="hidden"
+                                    name="_token"
+                                    value="{{ csrf_token('delete_service_' ~ service.id) }}"
+                                >
+
+                                <button
+                                    type="submit"
+                                    class="municipal-service-delete-button"
+                                >
+                                    Supprimer
+                                </button>
+
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}

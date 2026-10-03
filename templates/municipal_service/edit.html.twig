@@ -1,0 +1,98 @@
+
+{% extends 'dashboard/layout.html.twig' %}
+
+{% block title %}
+    TERRA NOVA - Modifier un service
+{% endblock %}
+
+{% block dashboard_title %}
+    Modifier un service
+{% endblock %}
+
+{% block dashboard_description %}
+    Modifiez les informations du service municipal.
+{% endblock %}
+
+{% block dashboard_content %}
+
+<section class="dashboard-section">
+
+    <div class="municipal-service-form-card">
+
+        {{ form_start(form, {
+            'attr': {
+                'class': 'municipal-service-form'
+            }
+        }) }}
+
+            <div class="municipal-service-form-grid">
+
+                <div class="form-field">
+                    {{ form_label(form.name) }}
+                    {{ form_widget(form.name) }}
+                    {{ form_errors(form.name) }}
+                </div>
+
+                <div class="form-field">
+                    {{ form_label(form.category) }}
+                    {{ form_widget(form.category) }}
+                    {{ form_errors(form.category) }}
+                </div>
+
+                <div class="form-field form-field-full">
+                    {{ form_label(form.description) }}
+                    {{ form_widget(form.description) }}
+                    {{ form_errors(form.description) }}
+                </div>
+
+                <div class="form-field">
+                    {{ form_label(form.adresse) }}
+                    {{ form_widget(form.adresse) }}
+                    {{ form_errors(form.adresse) }}
+                </div>
+
+                <div class="form-field">
+                    {{ form_label(form.phone) }}
+                    {{ form_widget(form.phone) }}
+                    {{ form_errors(form.phone) }}
+                </div>
+
+                <div class="form-field">
+                    {{ form_label(form.email) }}
+                    {{ form_widget(form.email) }}
+                    {{ form_errors(form.email) }}
+                </div>
+
+                <div class="form-field">
+                    {{ form_label(form.openingHours) }}
+                    {{ form_widget(form.openingHours) }}
+                    {{ form_errors(form.openingHours) }}
+                </div>
+
+            </div>
+
+            <div class="municipal-service-form-actions">
+
+                <a
+                    href="{{ path('app_services') }}"
+                    class="municipal-service-cancel"
+                >
+                    Annuler
+                </a>
+
+                <button
+                    type="submit"
+                    class="municipal-service-submit"
+                >
+                    Enregistrer les modifications
+                </button>
+
+            </div>
+
+        {{ form_end(form) }}
+
+    </div>
+
+</section>
+
+{% endblock %}
