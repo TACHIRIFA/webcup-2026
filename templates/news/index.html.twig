@@ -1,216 +1,184 @@
-```twig
 {% extends 'dashboard/layout.html.twig' %}
 
 {% block title %}
-    TERRA NOVA - Gestion des profils
+TERRA NOVA - Actualités & informations
 {% endblock %}
 
 {% block dashboard_title %}
-    Gestion des profils
+Actualités & informations
 {% endblock %}
 
 {% block dashboard_description %}
-    Consultez et gérez les profils des utilisateurs de la plateforme.
+Consultez et gérez les actualités de la municipalité.
 {% endblock %}
 
 {% block dashboard_content %}
 
 <section class="dashboard-section">
 
-    <div class="users-header">
+<div class="news-header">
 
-        <div>
+    <div>
 
-            <h3 class="users-page-title">
-                Profils utilisateurs
-            </h3>
+        <h3 class="news-page-title">
+            Actualités
+        </h3>
 
-            <p class="users-page-description">
-                Gérez les utilisateurs, leurs informations et leurs rôles.
-            </p>
-
-        </div>
+        <p class="news-page-description">
+            Retrouvez les informations et actualités publiées par la municipalité.
+        </p>
 
     </div>
 
-    {% for message in app.flashes('success') %}
+    <a
+        href="{{ path('app_news_new') }}"
+        class="news-add-button"
+    >
+        + Ajouter une actualité
+    </a>
+
+</div>
+
+{% for message in app.flashes('success') %}
+
+    <div
+        class="news-success-message"
+        role="status"
+        aria-live="polite"
+    >
+        {{ message }}
+    </div>
+
+{% endfor %}
+
+{% if news is empty %}
+
+    <div class="news-empty-state">
 
         <div
-            class="users-success-message"
-            role="status"
-            aria-live="polite"
+            class="news-empty-icon"
+            aria-hidden="true"
         >
-            {{ message }}
-        </div>
 
-    {% endfor %}
-
-    {% if users is empty %}
-
-        <div class="users-empty-state">
-
-            <div
-                class="users-empty-icon"
-                aria-hidden="true"
+            <svg
+                viewBox="0 0 24 24"
+                width="30"
+                height="30"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
             >
-
-                <svg
-                    viewBox="0 0 24 24"
-                    width="30"
-                    height="30"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                >
-                    <circle cx="12" cy="8" r="4"></circle>
-                    <path d="M4 21a8 8 0 0 1 16 0"></path>
-                </svg>
-
-            </div>
-
-            <h4 class="users-empty-title">
-                Aucun profil disponible
-            </h4>
-
-            <p class="users-empty-description">
-                Aucun utilisateur n'est actuellement enregistré sur la plateforme.
-            </p>
+                <path d="M4 5h16v14H4z"></path>
+                <path d="M7 8h10"></path>
+                <path d="M7 12h10"></path>
+                <path d="M7 16h6"></path>
+            </svg>
 
         </div>
 
-    {% else %}
+        <h4 class="news-empty-title">
+            Aucune actualité disponible
+        </h4>
 
-        <div class="users-table-card">
+        <p class="news-empty-description">
+            Aucune actualité n'a encore été publiée.
+            Commencez par ajouter une première information municipale.
+        </p>
 
-            <div class="users-table-wrapper">
+    </div>
 
-                <table class="users-table">
+{% else %}
 
-                    <thead>
+    <div class="news-grid">
 
-                        <tr>
-                            <th scope="col">Utilisateur</th>
-                            <th scope="col">E-mail</th>
-                            <th scope="col">Rôle</th>
-                            <th scope="col">Actions</th>
-                        </tr>
+        {% for item in news %}
 
-                    </thead>
+            <article class="news-card">
 
-                    <tbody>
+                {% if item.image %}
 
-                        {% for user in users %}
+                    <div class="news-card-image">
 
-                            <tr>
+                        <img
+                            src="{{ asset('uploads/news/' ~ item.image) }}"
+                            alt="{{ item.title }}"
+                        >
 
-                                <td>
+                    </div>
 
-                                    <div class="user-profile-cell">
+                {% endif %}
 
-                                        <div
-                                            class="user-avatar"
-                                            aria-hidden="true"
-                                        >
-                                            {{ user.email|first|upper }}
-                                        </div>
+                <div class="news-card-content">
 
-                                        <div class="user-profile-information">
+                    <div class="news-card-meta">
 
-                                            <strong>
-                                                {{ user.email }}
-                                            </strong>
+                        <span class="news-card-category">
+                            {{ item.category }}
+                        </span>
 
-                                            <span>
-                                                Profil #{{ user.id }}
-                                            </span>
+                        <time
+                            datetime="{{ item.publishAt|date('Y-m-d\\TH:i') }}"
+                        >
+                            {{ item.publishAt|date('d/m/Y à H:i') }}
+                        </time>
 
-                                        </div>
+                    </div>
 
-                                    </div>
+                    <h4 class="news-card-title">
+                        {{ item.title }}
+                    </h4>
 
-                                </td>
+                    <p class="news-card-description">
+                        {{ item.content|length > 180
+                            ? item.content|slice(0, 180) ~ '...'
+                            : item.content
+                        }}
+                    </p>
 
-                                <td>
-                                    {{ user.email }}
-                                </td>
+                    <div class="news-card-actions">
 
-                                <td>
+                        <a
+                            href="{{ path('app_news_edit', {'id': item.id}) }}"
+                            class="news-edit-button"
+                        >
+                            Modifier
+                        </a>
 
-                                    {% if 'ROLE_ADMIN' in user.roles %}
+                        <form
+                            method="post"
+                            action="{{ path('app_news_delete', {'id': item.id}) }}"
+                            class="news-delete-form"
+                            onsubmit="return confirm('Voulez-vous vraiment supprimer cette actualité ?');"
+                        >
 
-                                        <span class="user-role user-role-admin">
-                                            Administrateur
-                                        </span>
+                            <input
+                                type="hidden"
+                                name="_token"
+                                value="{{ csrf_token('delete_news_' ~ item.id) }}"
+                            >
 
-                                    {% elseif 'ROLE_AGENT' in user.roles %}
+                            <button
+                                type="submit"
+                                class="news-delete-button"
+                            >
+                                Supprimer
+                            </button>
 
-                                        <span class="user-role user-role-agent">
-                                            Agent
-                                        </span>
+                        </form>
 
-                                    {% else %}
+                    </div>
 
-                                        <span class="user-role user-role-citizen">
-                                            Citoyen
-                                        </span>
+                </div>
 
-                                    {% endif %}
+            </article>
 
-                                </td>
+        {% endfor %}
 
-                                <td>
+    </div>
 
-                                    <div class="user-actions">
-
-                                        <a
-                                            href="{{ path('app_user_edit', {'id': user.id}) }}"
-                                            class="user-edit-button"
-                                        >
-                                            Modifier
-                                        </a>
-
-                                        <form
-                                            method="post"
-                                            action="{{ path('app_user_delete', {'id': user.id}) }}"
-                                            class="user-delete-form"
-                                            onsubmit="return confirm('Voulez-vous vraiment supprimer ce profil ?');"
-                                        >
-
-                                            <input
-                                                type="hidden"
-                                                name="_token"
-                                                value="{{ csrf_token('delete_user_' ~ user.id) }}"
-                                            >
-
-                                            <button
-                                                type="submit"
-                                                class="user-delete-button"
-                                            >
-                                                Supprimer
-                                            </button>
-
-                                        </form>
-
-                                    </div>
-
-                                </td>
-
-                            </tr>
-
-                        {% endfor %}
-
-                    </tbody>
-
-                </table>
-
-            </div>
-
-        </div>
-
-    {% endif %}
-
+{% endif %}
 </section>
 
 {% endblock %}
