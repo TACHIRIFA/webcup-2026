@@ -149,24 +149,36 @@ Consultez et gérez les profils des utilisateurs de la plateforme.
 
                             <td>
 
-                                <div class="user-actions">
+                       <div class="user-actions">
 
-                                    <a
-                                        href="#"
-                                        class="user-edit-button"
-                                    >
-                                        Modifier
-                                    </a>
+                        <a
+                            href="{{ path('app_user_edit', {'id': user.id}) }}"
+                            class="user-edit-button"
+                        >
+                            Modifier
+                        </a>
 
-                                    <button
-                                        type="button"
-                                        class="user-delete-button"
-                                        disabled
-                                    >
-                                        Supprimer
-                                    </button>
+                        <form
+                            method="post"
+                            action="{{ path('app_user_delete', {'id': user.id}) }}"
+                            class="user-delete-form"
+                            onsubmit="return confirm('Voulez-vous vraiment supprimer ce profil ?');"
+                        >
+                            <input
+                                type="hidden"
+                                name="_token"
+                                value="{{ csrf_token('delete_user_' ~ user.id) }}"
+                            >
 
-                                </div>
+                            <button
+                                type="submit"
+                                class="user-delete-button"
+                            >
+                                Supprimer
+                            </button>
+                        </form>
+
+                    </div>
 
                             </td>
 
